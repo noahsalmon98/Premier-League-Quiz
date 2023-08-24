@@ -19,6 +19,7 @@
 let currentQuestion = 0;
 let score = 0;
 let timeLeft = 90;
+let users = [];
 
 
 //Get element ids
@@ -30,7 +31,9 @@ let start = document.getElementById("start")
 let containerEl = document.getElementById("quiz-container")
 let quizPrompt = document.getElementById("quiz-prompt");
 let quizPossible = document.getElementById("quiz-possible-answers");
-
+let gameOver = document.getElementById("end-of-quiz")
+let quizScore = document.getElementById("quiz-score")
+let saveScore = document.getElementById("submit")
 
 //Questions and Answers
 
@@ -130,5 +133,37 @@ function startTimer() {
 }
 
 function end() {
+    gameOver.style.display = "block";
+    containerEl.style.display = "none";
+    timer.style.display = "none";
+    score = timeLeft;
+    quizScore.textContent = "Your Score: " + score
 
+};
+
+  
+  saveScore.addEventListener("click", saveResult
+);
+
+function saveResult() {
+    const enteredName = document.querySelector('#name');
+    const user = {
+        name: enteredName.value.trim(),
+        score: timeLeft,
+
+    };
+    users.push(user);
+    localStorage.setItem("scores", JSON.stringify(users));
+    showHighScores();
+    //resets the value of input element
+    enteredName.value = '';
 }
+
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
