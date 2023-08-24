@@ -111,7 +111,7 @@ function startTimer() {
       quizPossible.appendChild(answer);
     }
   }
-
+//end of quiz and results
 
   function result(e) {
   if (e.target.matches("button")) {
@@ -145,6 +145,7 @@ function end() {
   saveScore.addEventListener("click", saveResult
 );
 
+// saving results in local storage
 function saveResult() {
     const enteredName = document.querySelector('#name');
     const user = {
@@ -154,7 +155,6 @@ function saveResult() {
     };
     users.push(user);
     localStorage.setItem("scores", JSON.stringify(users));
-    showHighScores();
     //resets the value of input element
     enteredName.value = '';
 }
