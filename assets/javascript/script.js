@@ -85,9 +85,11 @@ function startTimer() {
       timer.textContent = "Time Left: " + timeLeft;
       if (timeLeft === 0) {
         clearInterval(timerInterval); 
+        end();
       }
       if (currentQuestion === quizData.length) {
         clearInterval(timerInterval);
+        end();
       }
  
     }, 1000);
@@ -115,20 +117,18 @@ function startTimer() {
       alert("Correct!")
     } else {
       alert("Incorrect")
-      timeLeft -= 10;
+      timeLeft -= 15;
       timer.textContent = timeLeft;
     }
     currentQuestion++;
     if (currentQuestion === quizData.length) {
-      showScore();
+      end();
     } else {
       showQuestion();
     }
   }
 }
-function showScore() {
-    gameOver.style.display = "block";
-    quizContainer.style.display = "none";
-    timerId.style.display = "none";
-    score = timeLeft;
-  }
+
+function end() {
+
+}
