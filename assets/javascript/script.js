@@ -15,9 +15,19 @@
 // THEN I can save my initials and my score
 
 
+//Get element ids
+const quizTitle = document.getElementById('quiz0-title');
+const description = document.querySelector("p");
+const startButton = document.getElementById("start-button");
+const timer = document.getElementById("time");
+const containerEl = document.getElementById("quiz-container")
+const quizPrompt = document.getElementById("quiz-prompt");
+const quizPossible = document.getElementById("quiz-possible-answers");
+
+
 //Questions and Answers
 
-var questions = [
+const questions = [
     {
         prompt: "In what year did the Premier League begin?",
         possibleAnswers: ["1990","1991","1992","1993",],
@@ -49,3 +59,31 @@ var questions = [
         correctAnswer: "Erling Haaland",
     }
 ];
+
+
+
+//initail position
+
+let currentQuestion = 0;
+let score = 0;
+let timeLeft = 90;
+
+
+//Quiz function
+function startQuiz() {
+    timerInterval = setInterval(function () {
+        secondsLeft--;
+        secondsLeftEl.textContent = secondsLeft + " seconds left";
+        if (secondsLeft <= 0) {
+        // Stops execution of action at set interval
+        clearInterval(timerInterval);
+        }
+    }, 1000);
+    //make container disappear
+    containerEl.classList.add("hidden");
+    // make question container appear
+    questionsEl.classList.remove("hidden");
+    // call question function
+    getQuestion();
+    }
+startButton.addEventListener("click",startQuiz);
