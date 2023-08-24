@@ -100,9 +100,35 @@ function startTimer() {
     for (let i = 0; i < question.possibleAnswers.length; i++) {
       const answer = document.createElement("button");
       answer.innerText = question.possibleAnswers[i];
-      answer.addEventListener("click", function () {
-        checkAnswer();
+      answer.addEventListener("click", function (e) {
+        result(e);
       });
-      quizPossible.appendChild(option);
+      quizPossible.appendChild(answer);
     }
+  }
+
+
+  function result(e) {
+  if (e.target.matches("button")) {
+    let question = quizData[currentQuestion];
+    if (e.target.innerText === question.correctAnswer) {
+      alert("Correct!")
+    } else {
+      alert("Incorrect")
+      timeLeft -= 10;
+      timer.textContent = timeLeft;
+    }
+    currentQuestion++;
+    if (currentQuestion === quizData.length) {
+      showScore();
+    } else {
+      showQuestion();
+    }
+  }
+}
+function showScore() {
+    gameOver.style.display = "block";
+    quizContainer.style.display = "none";
+    timerId.style.display = "none";
+    score = timeLeft;
   }
