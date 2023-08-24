@@ -14,20 +14,27 @@
 // WHEN the game is over
 // THEN I can save my initials and my score
 
+//initail position
+
+let currentQuestion = 0;
+let score = 0;
+let timeLeft = 90;
+
 
 //Get element ids
-const quizTitle = document.getElementById('quiz0-title');
-const description = document.querySelector("p");
-const startButton = document.getElementById("start-button");
-const timer = document.getElementById("time");
-const containerEl = document.getElementById("quiz-container")
-const quizPrompt = document.getElementById("quiz-prompt");
-const quizPossible = document.getElementById("quiz-possible-answers");
+let quizTitle = document.getElementById('quiz0-title');
+let description = document.querySelector("p");
+let startButton = document.getElementById("start-button");
+let timer = document.getElementById("time");
+let start = document.getElementById("start")
+let containerEl = document.getElementById("quiz-container")
+let quizPrompt = document.getElementById("quiz-prompt");
+let quizPossible = document.getElementById("quiz-possible-answers");
 
 
 //Questions and Answers
 
-const questions = [
+const quizData = [
     {
         prompt: "In what year did the Premier League begin?",
         possibleAnswers: ["1990","1991","1992","1993",],
@@ -60,30 +67,42 @@ const questions = [
     }
 ];
 
+startButton.addEventListener("click",startQuiz);
 
-
-//initail position
-
-let currentQuestion = 0;
-let score = 0;
-let timeLeft = 90;
 
 
 //Quiz function
 function startQuiz() {
-    timerInterval = setInterval(function () {
-        secondsLeft--;
-        secondsLeftEl.textContent = secondsLeft + " seconds left";
-        if (secondsLeft <= 0) {
-        // Stops execution of action at set interval
-        clearInterval(timerInterval);
-        }
-    }, 1000);
-    //make container disappear
-    containerEl.classList.add("hidden");
-    // make question container appear
-    questionsEl.classList.remove("hidden");
-    // call question function
-    getQuestion();
+        start.style.display = "none";
+        containerEl.style.display = "block";
+      showQuestion();
+      startTimer();
     }
-startButton.addEventListener("click",startQuiz);
+
+function startTimer() {
+    const timerInterval = setInterval(function () {
+      timeLeft--;
+      timer.textContent = "Time Left: " + timeLeft;
+      if (timeLeft === 0) {
+        clearInterval(timerInterval); 
+      }
+      if (currentQuestion === quizData.length) {
+        clearInterval(timerInterval);
+      }
+ 
+    }, 1000);
+  }
+  function showQuestion() {
+    let question = quizData[currentQuestion];
+    quizPrompt.innerText = question.prompt;
+    quizPossible.innerHTML = "";
+    
+    for (let i = 0; i < question.possibleAnswers.length; i++) {
+      const answer = document.createElement("button");
+      answer.innerText = question.possibleAnswers[i];
+      answer.addEventListener("click", function () {
+        checkAnswer();
+      });
+      quizPossible.appendChild(option);
+    }
+  }
