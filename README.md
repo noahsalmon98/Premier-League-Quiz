@@ -1,5 +1,13 @@
 # Premier-League-Quiz
-A quiz about England's top-flight football league
+
+## Description
+This is a quiz about the English Premier League. Users will have 90 seconds to answer multiple choice questions about England's top-flight football league. When the user starts the quiz a countdown of 90 seconds is started, meaning the user has 90 seconds to answer all the questions.
+
+There is only one correct answer for each question.
+Every incorrect answer removes 15 seconds from the timer.
+The final score is the time left when all the questions are answered.
+The score is saved in local storage and a highscore table can be viewed with the users name.
+
 
 ## User Story
 
@@ -21,7 +29,3 @@ N/A
 
 
 ## URL
-
-https://noahsalmon98.github.io/project-1/
-https://github.com/noahsalmon98/project-1
-
