@@ -14,6 +14,12 @@ A quiz about England's top-flight football league
 ## Instals
 N/A
 
+## Screenshots
+
+![Screenshot of quiz 1](./assets/images/Screen%20Shot%202023-08-24%20at%208.02.47%20PM.png)
+![Screenshot of quiz 2](./assets/images/Screen%20Shot%202023-08-24%20at%208.02.57%20PM.png)
+
+
 ## URL
 
 https://noahsalmon98.github.io/project-1/
